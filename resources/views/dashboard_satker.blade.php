@@ -7,7 +7,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
+
   }
 </style>
 @endsection
@@ -17,17 +17,17 @@
 @section('content')
 <div class="row page-title-header">
   <div class="col-12">
-    
+
   </div>
 </div>
 
 <div class="row">
-  
+
   <div class="col-lg-12 col-md-12 col-sm-12 col-12">
     <div class="row">
       <div class="col-lg-5 col-md-5 col-sm-5 col-5 mb-4 pr-0">
         <div class="card card-noborder bg-dash" style="border-radius: 15px 0 0 15px; height:100%;">
-          
+
         </div>
       </div>
       <div class="col-lg-7 col-md-7 col-sm-7 col-7 mb-4 pl-0">
@@ -73,25 +73,25 @@
             <h3 class="font-weight-semibold mb-3 text-white text-center">Struktur & Proses</h3>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Lingkungan Pengendalian</h5>
-              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_1 }}</p>
+              <h5 class="font-weight mb-0 text-white">{{ $s_p_1 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Penilaian Risiko</h5>
-              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_2 }}</p>
+              <h5 class="font-weight mb-0 text-white">{{ $s_p_2 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Kegiatan Pengendalian</h5>
-              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_3 }}</p>
+              <h5 class="font-weight mb-0 text-white">{{ $s_p_3 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Informasi & Komunikasi</h5>
-              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_4 }}</p>
+              <h5 class="font-weight mb-0 text-white">{{ $s_p_4 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Monitoring</h5>
-              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_5 }}</p>
+              <h5 class="font-weight mb-0 text-white">{{ $s_p_5 }}</p>
             </div>
-            <p class="mb-0 text-white">2021</p>
+            <p class="mb-0 text-white">{{$tahun_now}}</p>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
         <div class="row">
           <div class="d-flex justify-content-between col-12">
             <h4 class="font-weight m-0">Atensi</h4>
-            <button type="button" class="btn btn-filter-custom">View All</button>          
+            <button type="button" class="btn btn-filter-custom">View All</button>
           </div>
           <table class="table table-striped mt-4">
             <tbody>
@@ -143,6 +143,6 @@
       "success"
   );
 @endif
-  
+
 </script>
 @endsection

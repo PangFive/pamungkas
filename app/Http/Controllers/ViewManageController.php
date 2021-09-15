@@ -11,8 +11,10 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\JawabanOutput;
 use App\Models\JawabanSasaran;
+use App\Models\Mapping_responden;
 use App\Models\RealisasiOutput;
 use App\Models\JawabanStrukturProses;
+use App\Models\Satker;
 use App\Models\User;
 
 class ViewManageController extends Controller
@@ -35,11 +37,11 @@ class ViewManageController extends Controller
         $arr_ammount = count($dates);
         $incomes_data = array();
         if($arr_ammount > 7){
-            for ($i = 0; $i < 7; $i++) { 
-                array_push($incomes_data, $dates[$i]);  
+            for ($i = 0; $i < 7; $i++) {
+                array_push($incomes_data, $dates[$i]);
             }
         }elseif($arr_ammount > 0){
-            for ($i = 0; $i < $arr_ammount; $i++) { 
+            for ($i = 0; $i < $arr_ammount; $i++) {
                 array_push($incomes_data, $dates[$i]);
             }
         }
@@ -72,6 +74,15 @@ class ViewManageController extends Controller
         $tahun_now = date('Y');
         $tahun_lalu = date('Y')-1;
 
+        //jumlah satker
+        $jumlahsatker = Satker::select('id')->count();
+        $satkers = Satker::get();
+
+        //status struktur & proses
+        $responden = Mapping_responden::all('satker_id','kuesioner_id');
+        $jawabanSP = JawabanStrukturProses::all('satker_id','jawaban');
+
+
         $data_sasaran = Sasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
         $data_sasaran_t = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_t')->get();
         $data_sasaran_b = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_b')->get();
@@ -79,7 +90,7 @@ class ViewManageController extends Controller
         $data_ikk_target = IkkTarget::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
         $data_ikk_target_j_ikk = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_ikk')->get();
         $data_ikk_target_j_target = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_target')->get();
-        
+
         $data_ikk_target_lalu = IkkTarget::where('tahun',$tahun_lalu)->where('satker_id',$user_satker)->get();
         $data_ikk_target_realisasi = RealisasiOutput::where('tahun',$tahun_lalu)->where('satker_id',$user_satker)->whereNotNull('realisasi')->get();
 
@@ -108,11 +119,11 @@ class ViewManageController extends Controller
             return JawabanStrukturProses::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where('unsur_id',$q)->select('jawaban')->get();
         };
 
-        $s_p_1 = round($level_capaian(1)->avg('jawaban'),0);
-        $s_p_2 = round($level_capaian(2)->avg('jawaban'),0);
-        $s_p_3 = round($level_capaian(3)->avg('jawaban'),0);
-        $s_p_4 = round($level_capaian(4)->avg('jawaban'),0);
-        $s_p_5 = round($level_capaian(5)->avg('jawaban'),0);
+        $s_p_1 = round($level_capaian(1)->avg('jawaban'),2);
+        $s_p_2 = round($level_capaian(2)->avg('jawaban'),2);
+        $s_p_3 = round($level_capaian(3)->avg('jawaban'),2);
+        $s_p_4 = round($level_capaian(4)->avg('jawaban'),2);
+        $s_p_5 = round($level_capaian(5)->avg('jawaban'),2);
 
         $user= User::where('id_satker',$user_satker)->with(['mappings' => function($q){
             $q->withCount('jawaban');
@@ -131,7 +142,7 @@ class ViewManageController extends Controller
                 if (in_array(0,$data())){
                     $responden_belum_isi[]=1;
                 }
-                
+
                 $total_responden[]=['pengisian' => $data()];
             }
         }
@@ -139,12 +150,12 @@ class ViewManageController extends Controller
         $res_belum = count($responden_belum_isi);
 
         if($role_login=="superadmin"){
-            return view('dashboard', compact('kd_transaction', 'incomes', 'incomes_daily', 'customers_daily', 'all_incomes', 'min_date', 'max_date', 'market'));
+            return view('dashboard', compact('kd_transaction', 'incomes', 'incomes_daily', 'customers_daily', 'all_incomes', 'min_date', 'max_date', 'market','jumlahsatker','satkers','responden','responden_t4','jawabanSP'));
         }else{
-            return view('dashboard_satker',compact('penetapan','penilaian', 'a_sasaran','a_ikk','a_target','s_p_1','s_p_2','s_p_3','s_p_4','s_p_5','res_belum'));
+            return view('dashboard_satker',compact('tahun_now','penetapan','penilaian', 'a_sasaran','a_ikk','a_target','s_p_1','s_p_2','s_p_3','s_p_4','s_p_5','res_belum'));
             // return count($responden_belum_isi);
         }
-    	
+
     }
 
     // Filter Chart Dashboard
@@ -161,11 +172,11 @@ class ViewManageController extends Controller
             $arr_ammount = count($dates);
             $incomes_data = array();
             if($arr_ammount > 7){
-                for ($i = 0; $i < 7; $i++) { 
-                    array_push($incomes_data, $dates[$i]);  
+                for ($i = 0; $i < 7; $i++) {
+                    array_push($incomes_data, $dates[$i]);
                 }
             }elseif($arr_ammount > 0){
-                for ($i = 0; $i < $arr_ammount; $i++) { 
+                for ($i = 0; $i < $arr_ammount; $i++) {
                     array_push($incomes_data, $dates[$i]);
                 }
             }
@@ -176,7 +187,7 @@ class ViewManageController extends Controller
             }
 
             return response()->json([
-                'incomes' => $incomes, 
+                'incomes' => $incomes,
                 'total' => $total
             ]);
         }else{
@@ -190,11 +201,11 @@ class ViewManageController extends Controller
             $arr_ammount = count($dates);
             $customer_data = array();
             if($arr_ammount > 7){
-                for ($i = 0; $i < 7; $i++) { 
-                    array_push($customer_data, $dates[$i]);  
+                for ($i = 0; $i < 7; $i++) {
+                    array_push($customer_data, $dates[$i]);
                 }
             }elseif($arr_ammount > 0){
-                for ($i = 0; $i < $arr_ammount; $i++) { 
+                for ($i = 0; $i < $arr_ammount; $i++) {
                     array_push($customer_data, $dates[$i]);
                 }
             }
@@ -205,7 +216,7 @@ class ViewManageController extends Controller
             }
 
             return response()->json([
-                'customers' => $customers, 
+                'customers' => $customers,
                 'jumlah' => $jumlah
             ]);
         }

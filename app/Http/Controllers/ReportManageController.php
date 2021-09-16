@@ -15,6 +15,13 @@ use Illuminate\Http\Request;
 class ReportManageController extends Controller
 {
     // Show View Report Transaction
+    public function report()
+    {
+        $pdf = PDF::loadview('report.report');
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
     public function reportTransaction()
     {
         $id_account = Auth::id();
@@ -523,6 +530,7 @@ class ReportManageController extends Controller
             $market = Market::first();
 
             $pdf = PDF::loadview('report.export_report_worker', compact('transaksi', 'pasok', 'tgl_awal', 'tgl_akhir', 'id', 'jml_act_pasok', 'jml_act_trans', 'market'));
+            $pdf->setPaper('a4', 'potrait');
             return $pdf->stream();
         }else{
             return back();

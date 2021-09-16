@@ -18,6 +18,7 @@ Route::get('/', 'AuthManageController@viewLogin')->name('landing');
 Route::get('/login', 'AuthManageController@viewLogin')->name('login');
 Route::post('/verify_login', 'AuthManageController@verifyLogin');
 Route::post('/first_account', 'UserManageController@firstAccount');
+Route::get('/report', 'ReportManageController@report');
 
 Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,responden,monitor']], function(){
 	Route::get('/logout', 'AuthManageController@logoutProcess');
@@ -118,6 +119,7 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/transaction/process', 'TransactionManageController@transactionProcess');
 	Route::get('/transaction/receipt/{id}', 'TransactionManageController@receiptTransaction');
 	// ------------------------- Kelola Laporan -------------------------
+	
 	Route::get('/report/transaction', 'ReportManageController@reportTransaction');
 	Route::post('/report/transaction/filter', 'ReportManageController@filterTransaction');
 	Route::get('/report/transaction/chart/{id}', 'ReportManageController@chartTransaction');

@@ -94,8 +94,12 @@ class ViewManageController extends Controller
         $ikk_target_lalu = count($data_ikk_target_lalu);
         $ikk_target_realisasi = count($data_ikk_target_realisasi);
 
-        $penetapan = round(($sasaran_t+$sasaran_b+$ikk_target_j_ikk+$ikk_target_j_target)/($sasaran*2+$ikk_target*2)*100,0);
-        $penilaian = round($ikk_target_realisasi/$ikk_target_lalu*100);
+        $penetapan_a= $sasaran_t+$sasaran_b+$ikk_target_j_ikk+$ikk_target_j_target;
+        $penetapan_b= $sasaran*2+$ikk_target*2;
+
+
+        $penetapan = round(($penetapan_a==0 || $penetapan_b==0 ? 0: $penetapan_a/$penetapan_b) *100,0);
+        $penilaian = round(($ikk_target_realisasi==0 || $ikk_target_lalu==0 ? 0 : $ikk_target_realisasi/$ikk_target_lalu) *100,0);
 
         // Atensi
         $a_sasaran = $sasaran-$sasaran_n;

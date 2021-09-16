@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 15/09/2021 03:13:25
+ Date: 15/09/2021 21:02:28
 */
 
 SET NAMES utf8mb4;
@@ -157,7 +157,7 @@ CREATE TABLE `jawaban_outputs` (
   CONSTRAINT `jawaban_outputs_ikk_target_id_foreign` FOREIGN KEY (`ikk_target_id`) REFERENCES `ikk_targets` (`id`) ON DELETE CASCADE,
   CONSTRAINT `jawaban_outputs_j_sasaran_id_foreign` FOREIGN KEY (`j_sasaran_id`) REFERENCES `jawaban_sasarans` (`id`) ON DELETE CASCADE,
   CONSTRAINT `jawaban_outputs_sasaran_id_foreign` FOREIGN KEY (`sasaran_id`) REFERENCES `sasarans` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of jawaban_outputs
@@ -186,7 +186,7 @@ CREATE TABLE `jawaban_sasarans` (
   PRIMARY KEY (`id`),
   KEY `jawaban_sasarans_sasaran_id_foreign` (`sasaran_id`),
   CONSTRAINT `jawaban_sasarans_sasaran_id_foreign` FOREIGN KEY (`sasaran_id`) REFERENCES `sasarans` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of jawaban_sasarans
@@ -1031,10 +1031,10 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES (1, 0, 'Wahyu', 'superadmin', 'default.jpg', 'wahyu@gmail.com', NULL, 'wahyu', '$2y$10$/pLX4TOWgeGxOUa6rXHbI.r35DWR28312We.TkGBhMXp11qRnowZ6', '3Ca3RepJGoJFfHxh5fCx5pLHpjRDkBpD5LYi9Uo6iyoHQp2GnkOk4bS1kQya', '2021-05-31 16:00:37', '2021-06-04 00:33:00');
+INSERT INTO `users` VALUES (1, 0, 'Wahyu', 'superadmin', 'default.jpg', 'wahyu@gmail.com', NULL, 'wahyu', '$2y$10$/pLX4TOWgeGxOUa6rXHbI.r35DWR28312We.TkGBhMXp11qRnowZ6', 'JguLYOppuIU8VXSGctAbGEnkP1tsMCQNx9bbPpzlDwk36W7cFK1GewVzi4RH', '2021-05-31 16:00:37', '2021-06-04 00:33:00');
 INSERT INTO `users` VALUES (2, 1, 'Ivan Rifandi', 'responden', 'default.jpg', 'ivan@gmail.com', NULL, 'ivan', '$2y$10$/pLX4TOWgeGxOUa6rXHbI.r35DWR28312We.TkGBhMXp11qRnowZ6', 'Sa3qNlqIIONMKgmzU8Q08ELUk7Bhg1Et79ikye3uMrkZGOjWdz3CCnmtmevM', '2021-06-02 00:20:32', '2021-09-12 17:09:33');
 INSERT INTO `users` VALUES (3, 1, 'Ridwan Putra Pamungkas', 'responden', 'default.jpg', 'ridwan@gmail.com', NULL, 'ridwan', '$2y$10$/pLX4TOWgeGxOUa6rXHbI.r35DWR28312We.TkGBhMXp11qRnowZ6', 'Gu49SfdnKJdEkoFn4RQUodU6gtvGReOTYDgqEGQBOc3jsUzqrHqq8mxZjbtE', '2021-06-02 10:49:02', '2021-06-02 10:49:02');
-INSERT INTO `users` VALUES (4, 1, 'Heru Setiawan', 'admin', 'default.jpg', 'heru@gmail.com', NULL, 'heru', '$2y$10$/pLX4TOWgeGxOUa6rXHbI.r35DWR28312We.TkGBhMXp11qRnowZ6', 'ygvpCLcAf1tvo2H0J8nyC02Jum2EYXQmnnFSbPJsXYkyV6anr7wzr5dpyKr3', '2021-05-31 16:00:37', '2021-09-13 16:05:39');
+INSERT INTO `users` VALUES (4, 1, 'Heru Setiawan', 'admin', 'default.jpg', 'heru@gmail.com', NULL, 'heru', '$2y$10$/pLX4TOWgeGxOUa6rXHbI.r35DWR28312We.TkGBhMXp11qRnowZ6', 'iiihuyNRYYb5VRsLhY5wsu2kF7PrOgjEFi8PY1Wovl6fUreuwaKiwyNdQUEo', '2021-05-31 16:00:37', '2021-09-13 16:05:39');
 INSERT INTO `users` VALUES (5, 1, 'AdminBWS', 'admin', 'default.jpg', 'bws_admin@gmail.com', NULL, 'admin', '$2y$10$FSoHYcgDPaUayIDId2bx/eg7hDtcjRLpMH9ZNO1n607g6xo7jbl3m', 'Av9hHnA9Ol6g0ckRyodFzYYcuIQJ095RKM0eCWQTN2M2uJpu3inNXUW2jHmr', '2021-06-05 17:08:24', '2021-06-05 17:08:24');
 INSERT INTO `users` VALUES (6, 1, 'ciki', 'responden', 'default.jpg', 'ciki@gmail.com', NULL, 'ciki', '$2y$10$d6glwWlCyC9dm9s19.H.l.C0vUtjCaBdD.7XdhEXdd6VYD58tb1vG', 'Vne4BHfrEkqyPSbTctvT04cZJDX5eZuXnMOpwWcWuRXbSrMX1Yv9BsebMKeh', '2021-06-05 17:15:00', '2021-06-05 17:15:00');
 INSERT INTO `users` VALUES (7, 2, 'Dedi Sinaga', 'admin', 'default.jpg', 'dedi@gmail.com', NULL, 'dedisinaga', '$2y$10$xjrwjc53Oo0CqB/57dGqAOb1zgNcMLU.dvPw5aHpFxYlMyoOFod.y', 'KknmmbnsMWSwdQ9Dh69B2nu4p7smJ2upEs74iHwmrde0vBPRH654rWkLjfGG', '2021-06-07 09:35:48', '2021-06-07 09:35:48');

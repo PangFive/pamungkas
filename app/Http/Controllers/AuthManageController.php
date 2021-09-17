@@ -12,10 +12,15 @@ class AuthManageController extends Controller
     // Show View Login
     public function viewLogin()
     {
-    	$users = User::all()
-    	->count();
+        if (auth()->check()) {
+            return redirect('/dashboard');
+        }else{
+            $users = User::all()
+            ->count();
 
-    	return view('landing', compact('users'));
+            return view('landing', compact('users'));
+        }
+    	
     }
 
     // Verify Login

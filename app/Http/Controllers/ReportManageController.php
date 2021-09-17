@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Auth;
+use IDCrypt;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Acces;

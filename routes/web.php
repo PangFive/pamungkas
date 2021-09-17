@@ -19,6 +19,7 @@ Route::get('/login', 'AuthManageController@viewLogin')->name('login');
 Route::post('/verify_login', 'AuthManageController@verifyLogin');
 Route::post('/first_account', 'UserManageController@firstAccount');
 Route::get('/report', 'ReportManageController@report');
+Route::get('/report/{id}', 'ReportManageController@reportId')->name('reportId');
 
 Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,responden,monitor']], function(){
 	Route::get('/logout', 'AuthManageController@logoutProcess');

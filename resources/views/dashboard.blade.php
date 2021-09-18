@@ -130,7 +130,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12 mb-3">
+  <div class="col-xl-9 col-lg-7 col-md-12 col-sm-12 col-12 mb-3">
     <div class="card b-radius card-noborder" style="height:100%;">
       <div class="card-body">
         <div class="row pl-3">
@@ -160,7 +160,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
+  <div class="col-xl-3 col-lg-5 col-md-12 col-sm-12 col-12 mb-3">
     <div class="card card-noborder b-radius bg-dash" style="height:100%;">
       <div class="p-4" style="height: 100%">
         <h2 class="text-white font-weight-bold mt-2">Tambah Satker Baru?</h2>
@@ -233,68 +233,6 @@
 @endif
   
 var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-        @if(count($incomes) != 0)
-        @foreach($incomes as $income)
-        "{{ date('d M, Y', strtotime($income)) }}",
-        @endforeach
-        @endif
-        ],
-        datasets: [{
-            label: '',
-            data: [
-            @if(count($incomes) != 0)
-            @foreach($incomes as $income)
-            @php
-            $total = \App\Transaction::whereDate('created_at', $income)
-            ->sum('total');
-            @endphp
-            "{{ $total }}",
-            @endforeach
-            @endif
-            ],
-            backgroundColor: 'RGB(44, 77, 240)',
-            borderColor: 'RGB(44, 77, 240)',
-            borderWidth: 0
-        }]
-    },
-    options: {
-        title: {
-            display: false,
-            text: ''
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    callback: function(value, index, values) {
-                      if (parseInt(value) >= 1000) {
-                         return 'Rp. ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                      } else {
-                         return 'Rp. ' + value;
-                      }
-                   }
-                }
-            }],
-            xAxes: [{
-                barPercentage: 0.2
-            }]
-        },
-        legend: {
-            display: false
-        },
-        tooltips: {
-            callbacks: {
-               label: function(tooltipItem) {
-                      return tooltipItem.yLabel;
-               }
-            }
-        }
-    }
-});
 
 $(document).on('click', '.chart-filter', function(e){
   e.preventDefault();

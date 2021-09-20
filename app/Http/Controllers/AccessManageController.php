@@ -4,15 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Acces;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccessManageController extends Controller
 {
     // Show View Access
     public function viewAccess()
     {
-    	$access = Acces::join('users', 'users.id', '=', 'access.user')
-    	->select('access.*', 'users.*')
-    	->get();
+		$satker_account = Auth::user()->id_satker;
+		$role_account = Auth::user()->role;
+    	
+		if($role_account!="superadmin"){
+			$access = Acces::join('users', 'users.id', '=', 'access.user')->where('users.id_satker',$satker_account)
+			->select('access.*', 'users.*')
+			->get();
+		} else {
+			$access = Acces::join('users', 'users.id', '=', 'access.user')
+			->select('access.*', 'users.*')
+			->get();
+		}
 
     	return view('manage_account.access', compact('access'));
     }

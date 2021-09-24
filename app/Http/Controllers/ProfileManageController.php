@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
+use Image;
 use App\Models\User;
 use App\Models\Activity;
 use Illuminate\Http\Request;
@@ -72,7 +73,12 @@ class ProfileManageController extends Controller
 		$user = User::find(Auth::id());
     	$foto = $req->file('foto');
         $user->foto = $foto->getClientOriginalName();
-        $foto->move(public_path('pictures/'), $foto->getClientOriginalName());
+
+        $foto_resize = Image::make($foto);
+        $y = $foto_resize->height();
+        $x = $foto_resize->width();
+        $size = 800;
+        $foto_resize->resize($size, $size*$y/$x)->save(public_path('pictures/'.$foto->getClientOriginalName()));
         $user->save();
 
         Session::flash('update_success', 'Foto profil berhasil diubah');

@@ -18,12 +18,21 @@
     <link rel="shortcut icon" href="{{ asset('icons/favicon.png') }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
-    <title>Page Not Found</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}"/>
+    <title>Pamungkas - Not Found</title>
     <style>
         
         .animation{
             height: auto;
             
+        }
+
+        .animate__animated.animate__fadeInUp {
+            --animate-duration: 0.5s;
+        }
+
+        .animate__animated.animate__bounceInDown {
+            --animate-duration: 0.7s;
         }
 
         html { height: 100%; }
@@ -38,8 +47,8 @@
 </head>
 <body>
     <div id="anim" >
-        <lottie-player src="{{ asset('animation/4047-404-animation.json') }}"  background="transparent"  speed="1"  style="width: 90%; height: auto; margin-left:10%"  loop  autoplay></lottie-player>
-        <div class="row mx-auto" id="landing">
+        <lottie-player class="animate__animated animate__bounceInDown" src="{{ asset('animation/4047-404-animation.json') }}"  background="transparent"  speed="1"  style="width: 90%; height: auto; margin-left:10%"  loop  autoplay></lottie-player>
+        <div class="row mx-auto animate__animated animate__fadeInUp" id="landing">
             <div class="col-lg-12 mr-5 ml-4 text-center">
              <h1 class="font-weight-bold mb-4 text-muted" style="font-size: 40px">Halaman yang kamu cari tidak tersedia</h1>
              <button onclick="goBack()" class="btn btn-simpan btn-to-login btn-lg"style=" border-radius:15px">Kembali</button>

@@ -30,6 +30,9 @@ class AccessManageController extends Controller
     // Change Access
     public function changeAccess($user, $access)
     {
+		$satker_account = Auth::user()->id_satker;
+		$role_account = Auth::user()->role;
+		
     	$pengguna = Acces::where('user', $user)
     	->select($access)
     	->first();
@@ -40,9 +43,16 @@ class AccessManageController extends Controller
     		Acces::where('user', $user)
             ->update([$access => 1]);
     	}
-    	$access = Acces::join('users', 'users.id', '=', 'access.user')
-    	->select('access.*', 'users.*')
-    	->get();
+    	if($role_account!="superadmin"){
+			$access = Acces::join('users', 'users.id', '=', 'access.user')->where('users.id_satker',$satker_account)
+			->select('access.*', 'users.*')
+			->get();
+		} else {
+			$access = Acces::join('users', 'users.id', '=', 'access.user')
+			->select('access.*', 'users.*')
+			->get();
+		}
+
     	return view('manage_account.access_table', compact('access'));
     }
 

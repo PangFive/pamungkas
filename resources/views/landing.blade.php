@@ -18,6 +18,7 @@
     <link rel="shortcut icon" href="{{ asset('icons/favicon.png') }}"/>
     <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}"/>
     <!-- End-CSS -->
     <style>
       .margin-img{
@@ -45,7 +46,7 @@
   <body>
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="pl-5 pr-5">
+        <div class="pl-5 pr-5 animate__animated animate__fadeInDown">
           <nav class="navbar navbar-expand pl-5 pr-5 navbar-light bg-light" style="min-height: 10vh">
             <div class="collapse navbar-collapse" id="navbarText">
               <a href="/"><img class="" src="{{ asset('icons/hero/logo.svg') }}" alt="logo" /></a>
@@ -64,15 +65,15 @@
           </nav>
         </div>
         <div class="content-wrapper d-flex justify-content-center align-items-center auth login-page theme-one">
-          <div class="row" id="landing">
+          <div class="row animate__animated animate__fadeIn" id="landing">
             <div class="col-lg-12 mr-5 ml-4">
              <h1 class="font-weight-bold" style="font-size: 80px">New SPIP</h1>
              <p style="font-size: 20px">Monitoring Berkelanjutan Penilaian Mandiri Maturitas SPIP  </br>Unit Kerja Eselon II</p>
              <button class="btn btn-simpan btn-to-login btn-lg" style=" border-radius:15px">Klik untuk login</button>
             </div>
           </div>
-          <img id="imgLanding" class="d-none d-xl-block margin-img-landing" src="{{ asset('icons/icon_login.svg') }}" alt="logo" />
-          <div class="row d-none" id="loginLanding">
+          <img id="imgLanding" class="d-none d-xl-block margin-img-landing animate__animated animate__bounceInRight" src="{{ asset('icons/icon_login.svg') }}" alt="logo" />
+          <div class="row d-none animate__animated animate__fadeIn" id="loginLanding">
             <div class="col-lg-12">
               <div class="auto-form-wrapper">
                 @if($users != 0)
@@ -183,6 +184,7 @@
           $('#imgLanding').removeClass('margin-img-landing');
           $('#imgLanding').addClass('margin-img');
           $('#loginLanding').removeClass('d-none');
+          
       });
 
     </script>

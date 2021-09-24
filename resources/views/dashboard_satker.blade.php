@@ -9,6 +9,9 @@
     background-position: center;
     
   }
+  .animate__animated.animate__fadeIn {
+            --animate-duration: 0.5s;
+        }
 </style>
 @endsection
 @section('page-title')
@@ -24,7 +27,7 @@
 <div class="row">
   
   <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-    <div class="row">
+    <div class="row animate__animated animate__fadeIn">
       <div class="col-lg-5 col-md-5 col-sm-5 col-5 mb-4 pr-0">
         <div class="card card-noborder bg-dash" style="border-radius: 15px 0 0 15px; height:100%;">
           

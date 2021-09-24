@@ -81,8 +81,9 @@ class ViewManageController extends Controller
         foreach ($user as $jawaban){
             if($jawaban->mappings != '[]'){
                 $data = function() use($jawaban){
-                  foreach ($jawaban->mappings as $mapping){
-                        $hasil[]=$mapping->jawaban_count;
+                    $hasil = array(); 
+                    foreach ($jawaban->mappings as $mapping){
+                      array_push($hasil,$mapping->jawaban_count);
                     }
                     return $hasil;
                 };

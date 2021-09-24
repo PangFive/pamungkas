@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/css/sweetalert.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('icons/favicon.png') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}"><link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css') }}">
     <!-- End-CSS -->
     <style>
       .margin-img{

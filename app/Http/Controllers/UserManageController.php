@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
+use Image;
 use App\Models\User;
 use App\Models\Acces;
 use App\Models\Satker;
@@ -122,7 +123,11 @@ class UserManageController extends Controller
     	    	$users->role = $req->role;
         		$foto = $req->file('foto');
                 $users->foto = $foto->getClientOriginalName();
-                $foto->move(public_path('pictures/'), $foto->getClientOriginalName());
+                $foto_resize = Image::make($foto);
+                $y = $foto_resize->height();
+                $x = $foto_resize->width();
+                $size = 800;
+                $foto_resize->resize($size, $size*$y/$x)->save(public_path('pictures/'.$foto->getClientOriginalName()));
                 $users->email = $req->email;
     	    	$users->username = $req->username;
     	    	$users->password = Hash::make($req->password);
@@ -245,7 +250,11 @@ class UserManageController extends Controller
                 $user->role = $req->role;
                 $foto = $req->file('foto');
                 $user->foto = $foto->getClientOriginalName();
-                $foto->move(public_path('pictures/'), $foto->getClientOriginalName());
+                $foto_resize = Image::make($foto);
+                $y = $foto_resize->height();
+                $x = $foto_resize->width();
+                $size = 800;
+                $foto_resize->resize($size, $size*$y/$x)->save(public_path('pictures/'.$foto->getClientOriginalName()));
                 $user->email = $req->email;
                 $user->username = $req->username;
                 $user->id_satker = $req->satker;

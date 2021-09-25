@@ -85,6 +85,14 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/account/update', 'UserManageController@updateAccount');
 	Route::get('/account/delete/{id}', 'UserManageController@deleteAccount');
 	Route::get('/account/filter/{id}', 'UserManageController@filterTable');
+	// ----------------------- Kelola Satker ---------------------------
+	// > Satker
+	Route::get('/satker', 'SatkerManageController@viewSatker');
+	Route::get('/satker/edit/{id}', 'SatkerManageController@editSatker');
+	Route::post('/satker/update', 'SatkerManageController@updateSatker');
+	Route::get('/satker/new', 'SatkerManageController@viewNewSatker');
+	Route::post('/satker/create', 'SatkerManageController@createSatker');
+	Route::get('/satker/delete/{id}', 'SatkerManageController@deleteSatker');
 	// > Akses
 	Route::get('/access', 'AccessManageController@viewAccess');
 	Route::get('/access/change/{user}/{access}', 'AccessManageController@changeAccess');

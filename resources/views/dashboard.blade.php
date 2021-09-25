@@ -1,6 +1,7 @@
 @extends('templates/main')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/manage_account/new_account/style.css') }}">
 <style>
   .bg-dash{
     background-image: url('icons/back.png');
@@ -177,7 +178,7 @@
   <div class="modal fade" id="tambahSatker" tabindex="-1" role="dialog" aria-labelledby="tambahSatkerLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content b-radius">
-        <form name="tambah_output" action="{{ route('penetapan.addoutput') }}" method="POST">
+        <form action="{{ url('satker/create') }}" method="post" name="create_form" enctype="multipart/form-data">
           @csrf
           <div class="modal-header">
             <h5 class="modal-title" id="tambahRespondenLabel">Tambah Satker</h5>
@@ -187,26 +188,53 @@
           </div>
           <div class="modal-body">
             <div class="form-group row">
-              <div class="col-12">
-                  <div class="form-group">
-                      <label>Sasaran</label>
-                      <input type="text" name="sasaran_id" hidden>
-                      <textarea type="text" class="form-control" name="sasaran_output" disabled></textarea>
+              <div class="col-12 p-2">
+                <div class="form-group row">
+                  <label class="col-12 font-weight-bold col-form-label">Foto Satker</label>
+                  <div class="col-12 d-flex flex-row align-items-center mt-2 ml-3 mb-2">
+                    <img src="{{ asset('pictures/default.jpg') }}" class="default-img mr-4" id="preview-foto">
+                    <div class="btn-action">
+                      <input type="file" name="foto" id="foto" hidden>
+                      <button class="btn btn-sm upload-btn mr-1" type="button">Upload Foto</button>
+                      <button class="btn btn-sm delete-btn" type="button">Hapus</button>
+                    </div>
                   </div>
-                  <div class="form-group">
-                      <label>IKK</label>
-                      <textarea type="text" class="form-control" name="ikk" placeholder="Masukkan IKK"></textarea>
+                </div>
+                <div class="form-group row">
+                  <label class="col-12 font-weight-bold col-form-label">Nama Satker <span class="text-danger">*</span></label>
+                  <div class="col-12">
+                    <input type="text" class="form-control" name="nama_satker" placeholder="Masukkan Nama Satker">
                   </div>
-                  <div class="row m-0 p-0">
-                      <div class="form-group col-6 pl-0">
-                          <label>Target</label>
-                          <input type="number" class="form-control" name="target" placeholder="Masukkan target">
-                      </div>
-                      <div class="form-group col-6 pr-0">
-                          <label>Satuan Target</label>
-                          <input type="text" class="form-control" name="satuan" placeholder="Masukkan satuan">
-                      </div>
+                  <div class="col-12 error-notice" id="nama_error"></div>
+                </div>
+                <div class="form-group row">
+                <label class="col-12 font-weight-bold col-form-label">Nickname Satker <span class="text-danger">*</span></label>
+                <div class="col-12">
+                  <input type="text" class="form-control" name="nickname_satker" placeholder="Masukkan Nickname Satker">
+                </div>
+                <div class="col-12 error-notice" id="nama_error"></div>
+              </div>
+                <div class="form-group row">
+                  <label class="col-12 font-weight-bold col-form-label">Eselon I <span class="text-danger">*</span></label>
+                  <div class="col-12">
+                    <input type="text" class="form-control" name="kementrian" placeholder="Masukkan Unit Eselon I">
                   </div>
+                  <div class="col-12 error-notice" id="email_error"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-12 font-weight-bold col-form-label">Alamat Satker <span class="text-danger">*</span></label>
+                  <div class="col-12">
+                    <textarea type="text" class="form-control" name="alamat_satker" placeholder="Masukkan Alamat Satker"></textarea>
+                  </div>
+                  <div class="col-12 error-notice" id="username_error"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-12 font-weight-bold col-form-label">Kontak Satker <span class="text-danger">*</span></label>
+                  <div class="col-12">
+                    <input type="text" class="form-control" name="email_satker" placeholder="Masukkan Password">
+                  </div>
+                  <div class="col-12 error-notice" id="email_satker"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -223,7 +251,16 @@
 <script src="{{ asset('js/dashboard/script.js') }}"></script>
 <script src="{{ asset('plugins/js/Chart.min.js') }}"></script>
 <script src="{{ asset('plugins/js/ChartRadius.js') }}"></script>
+<script src="{{ asset('js/manage_satker/new_satker/script.js') }}"></script>
 <script type="text/javascript">
+@if ($message = Session::get('create_success'))
+  swal(
+      "Berhasil!",
+      "{{ $message }}",
+      "success"
+  );
+@endif
+
 @if ($message = Session::get('update_success'))
   swal(
       "Berhasil!",
@@ -231,6 +268,10 @@
       "success"
   );
 @endif
+
+$(document).on('click', '.delete-btn', function(){
+  $("#preview-foto").attr("src", "{{ asset('pictures') }}/default.jpg");
+});
   
 var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -273,5 +314,6 @@ $(document).on('click', '.btn-view-transaction', function(){
     );
   }
 });
+
 </script>
 @endsection

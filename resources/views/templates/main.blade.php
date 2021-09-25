@@ -116,12 +116,15 @@
               <a class="nav-link" data-toggle="collapse" href="#kelola_akun" aria-expanded="false" aria-controls="kelola_akun">
                 <div>
                   <i class='bx bx-grid-alt nav__icon' ></i>
-                  <span class="menu-title">Kelola Akun</span>
+                  <span class="menu-title">Pengaturan</span>
                 </div>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="kelola_akun">
                 <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/satker') }}">Instansi</a>
+                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url('/account') }}">Daftar Akun</a>
                   </li>

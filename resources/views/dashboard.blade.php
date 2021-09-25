@@ -29,7 +29,7 @@
         <div class="card b-radius card-noborder bg-gradient-red">
           <div class="card-body custom-card-p">
             <div class="d-flex justify-content-between align-items-center">
-              <h2 class="font-weight-semibold mb-0 text-white">16</h2>
+              <h2 class="font-weight-semibold mb-0 text-white">{{ $jumlah_satker }}</h2>
               <div class="icon-round-2">
                 <i class="mdi mdi-briefcase-outline"></i>
               </div>
@@ -45,7 +45,7 @@
         <div class="card b-radius card-noborder bg-gradient-orange">
           <div class="card-body custom-card-p">
             <div class="d-flex justify-content-between align-items-center">
-              <h2 class="font-weight-semibold mb-0 text-white">11</h2>
+              <h2 class="font-weight-semibold mb-0 text-white">{{ $res_all }}</h2>
               <div class="icon-round-2">
                 <i class="mdi mdi-account-multiple"></i>
               </div>
@@ -61,7 +61,7 @@
         <div class="card b-radius card-noborder bg-gradient-blue">
           <div class="card-body custom-card-p">
             <div class="d-flex justify-content-between align-items-center">
-              <h2 class="font-weight-semibold mb-0 text-white">5</h2>
+              <h2 class="font-weight-semibold mb-0 text-white">{{ $res_all - $res_belum }}</h2>
               <div class="icon-round-2">
                 <i class="mdi mdi-account-multiple"></i>
               </div>

@@ -13,6 +13,7 @@ use App\Models\JawabanOutput;
 use App\Models\JawabanSasaran;
 use App\Models\RealisasiOutput;
 use App\Models\JawabanStrukturProses;
+use App\Models\Satker;
 use App\Models\User;
 
 class ViewManageController extends Controller
@@ -73,9 +74,19 @@ class ViewManageController extends Controller
         $s_p_4 = round($level_capaian(4)->avg('jawaban'),0);
         $s_p_5 = round($level_capaian(5)->avg('jawaban'),0);
 
-        $user= User::where('id_satker',$user_satker)->with(['mappings' => function($q){
-            $q->withCount('jawaban');
-        }])->get();
+        if($role_login=="superadmin"){
+            $user= User::whereHas('mappings',function($q) use($tahun_now){
+                $q->where('tahun',$tahun_now);
+            })->with(['mappings' => function($q) use($tahun_now){
+                $q->where('tahun',$tahun_now)->withCount('jawaban');
+            }])->withCount('mappings')->get();
+        }else{
+            $user= User::where('id_satker',$user_satker)->whereHas('mappings',function($q) use($tahun_now){
+                $q->where('tahun',$tahun_now);
+            })->with(['mappings' => function($q) use($tahun_now){
+                $q->where('tahun',$tahun_now)->withCount('jawaban');
+            }])->withCount('mappings')->get();
+        }
 
         $responden_belum_isi = [];
         foreach ($user as $jawaban){
@@ -98,8 +109,13 @@ class ViewManageController extends Controller
 
         $res_belum = count($responden_belum_isi);
 
+        $res_all = $user->where('mappings_count','>',0)->count();
+        $jumlah_satker = Satker::count();
+        
         if($role_login=="superadmin"){
-            return view('dashboard');
+            
+            return view('dashboard', compact('jumlah_satker','res_all', 'res_belum'));
+            
         }else{
             return view('dashboard_satker',compact('penetapan','penilaian', 'a_sasaran','a_ikk','a_target','s_p_1','s_p_2','s_p_3','s_p_4','s_p_5','res_belum'));
             // return count($responden_belum_isi);

@@ -164,6 +164,9 @@
     <script src="{{ asset('plugins/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/templates/script.js') }}"></script>
     <script type="text/javascript">
+      $(function() {
+        $("[href*='"+ location.pathname.split("/")[1] +"']").parent().addClass('active');
+      });
       $(document).on('input', 'input[name=search_page]', function(){
         if($(this).val() != ''){
           $('#content-web-page').prop('hidden', true);

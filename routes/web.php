@@ -25,7 +25,6 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::get('/logout', 'AuthManageController@logoutProcess');
 	Route::get('/dashboard', 'ViewManageController@viewDashboard');
 	Route::get('/dashboard/chart/{filter}', 'ViewManageController@filterChartDashboard');
-	Route::post('/market/update', 'ViewManageController@updateMarket');
 	// -------------------------Struktur & Proses -------------------
 	// > Struktur & Proses
 	Route::get('/struktur','StrukturProsesController@viewStruktur')->name('struktur');
@@ -33,8 +32,6 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/struktur/responden/add','StrukturProsesController@tambahResponden')->name('struktur.responden.add');
 	Route::get('/struktur/kuesioner/{id_mapping}/{tipe_kuesioner}','StrukturProsesController@formKuesioner')->name('struktur.kuesioner.mapping');
 	Route::post('/struktur/kuesioner/create','StrukturProsesController@createKuesioner')->name('struktur.kuesioner')->name('struktur.kuesioner.create');
-
-
 	// > Penetapan Tujuan
 	Route::get('/penetapan','PenetapanController@viewPenetapan')->name('penetapan');
 	Route::get('/penetapan/penilaian','PenetapanController@penilaianPenetapan')->name('penetapan.penilaian');
@@ -48,8 +45,6 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/penetapan/editsasaran','PenetapanController@editSasaran')->name('penetapan.editsasaran');
 	Route::delete('/penetapan/deleteoutput','PenetapanController@deleteOutput')->name('penetapan.deleteoutput');
 	Route::delete('/penetapan/deletesasaran','PenetapanController@deleteSasaran')->name('penetapan.deletesasaran');
-
-
 	// > Pencapaian Tujuan
 	Route::get('/pencapaian','TujuanController@viewPencapaian')->name('pencapaian');
 	Route::get('/pencapaian/penilaian','TujuanController@penilaianPencapaian')->name('pencapaian.penilaian');
@@ -67,8 +62,6 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/pencapaian/editsasaran','TujuanController@editSasaran')->name('pencapaian.editsasaran');
 	Route::delete('/pencapaian/deleteoutput','TujuanController@deleteOutput')->name('pencapaian.deleteoutput');
 	Route::delete('/pencapaian/deletesasaran','TujuanController@deleteSasaran')->name('pencapaian.deletesasaran');
-
-	
 	// ------------------------- Fitur Cari -------------------------
 	Route::get('/search/{word}', 'SearchManageController@searchPage');
 	// ------------------------- Profil -------------------------
@@ -98,35 +91,6 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::get('/access/change/{user}/{access}', 'AccessManageController@changeAccess');
 	Route::get('/access/check/{user}', 'AccessManageController@checkAccess');
 	Route::get('/access/sidebar', 'AccessManageController@sidebarRefresh');
-	// ------------------------- Kelola Barang -------------------------
-	// > Barang
-	Route::get('/product', 'ProductManageController@viewProduct');
-	Route::get('/product/new', 'ProductManageController@viewNewProduct');
-	Route::post('/product/create', 'ProductManageController@createProduct');
-	Route::post('/product/import', 'ProductManageController@importProduct');
-	Route::get('/product/edit/{id}', 'ProductManageController@editProduct');
-	Route::post('/product/update', 'ProductManageController@updateProduct');
-	Route::get('/product/delete/{id}', 'ProductManageController@deleteProduct');
-	Route::get('/product/filter/{id}', 'ProductManageController@filterTable');
-	// > Pasok
-	Route::get('/supply/system/{id}', 'SupplyManageController@supplySystem');
-	Route::get('/supply', 'SupplyManageController@viewSupply');
-	Route::get('/supply/new', 'SupplyManageController@viewNewSupply');
-	Route::get('/supply/check/{id}', 'SupplyManageController@checkSupplyCheck');
-	Route::get('/supply/data/{id}', 'SupplyManageController@checkSupplyData');
-	Route::post('/supply/create', 'SupplyManageController@createSupply');
-	Route::post('/supply/import', 'SupplyManageController@importSupply');
-	Route::get('/supply/statistics', 'SupplyManageController@statisticsSupply');
-	Route::get('/supply/statistics/product/{id}', 'SupplyManageController@statisticsProduct');
-	Route::get('/supply/statistics/users/{id}', 'SupplyManageController@statisticsUsers');
-	Route::get('/supply/statistics/table/{id}', 'SupplyManageController@statisticsTable');
-	Route::post('/supply/statistics/export', 'SupplyManageController@exportSupply');
-	// ------------------------- Transaksi -------------------------
-	Route::get('/transaction', 'TransactionManageController@viewTransaction');
-	Route::get('/transaction/product/{id}', 'TransactionManageController@transactionProduct');
-	Route::get('/transaction/product/check/{id}', 'TransactionManageController@transactionProductCheck');
-	Route::post('/transaction/process', 'TransactionManageController@transactionProcess');
-	Route::get('/transaction/receipt/{id}', 'TransactionManageController@receiptTransaction');
 	// ------------------------- Kelola Laporan -------------------------
 	
 	Route::get('/report/transaction', 'ReportManageController@reportTransaction');

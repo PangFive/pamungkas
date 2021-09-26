@@ -83,6 +83,34 @@ class StrukturProsesController extends Controller
         return redirect('/struktur');
     }
 
+    public function deleteResponden(Request $id)
+    {
+   
+        $satker_login = auth()->user()->id_satker;
+        $role_login = auth()->user()->role;
+        $id_login = auth()->user()->id;
+        
+        $ids = $id->ids;
+        if($role_login == "superadmin" || $role_login == "admin"){
+            Mapping_responden::destroy($ids);
+        }
+
+        if($role_login=="superadmin"){
+            
+            $responden = Mapping_responden::with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->simplePaginate(10);
+        }
+        elseif($role_login=="admin"){
+            
+            $responden = Mapping_responden::where('satker_id',$satker_login)->with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->simplePaginate(10);
+        }else{
+            
+            $responden = Mapping_responden::where('satker_id',$satker_login)->where('users_id',$id_login)->with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->simplePaginate(10);
+        }
+
+        return response()->view('struktur_proses.table_struktur',['respondens'=>$responden])->setStatusCode(200);
+
+    }
+
     public function viewPenilaian()
     {
         $user_login = auth()->user()->id;

@@ -105,6 +105,7 @@
                         <th> Nama </th>
                         <th> Email </th>
                         <th> Jenis Kuesioner </th>
+                        <th> </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -123,6 +124,11 @@
                             <p class="col-1 m-0">{{$responden->kuesioner->tipe_kuesioner}} - </p>
                             <p class="col-11 m-0" style="white-space: normal;">{{$responden->kuesioner->uraian_tipe_kuesioner}}</p>
                           </div>
+                        </td>
+                        <td class="col-1">
+                          <button type="button" class="btn-delete btn btn-secondary pl-2 pr-2" data-token="{{ csrf_token() }}" data-delete="{{ $responden->id }}">
+                            <strong><span aria-hidden="true">&times;</span></strong>
+                          </button>
                         </td>
                       </tr>
                       @endforeach
@@ -186,6 +192,46 @@
       "{{ $message }}",
       "error"
   );
+@endif
+
+@if (auth()->user()->role == 'superadmin' || auth()->user()->role == 'admin')
+  
+// delete responden
+$(document).on('click', '.btn-delete', function(e){
+  e.preventDefault();
+  var data_delete = $(this).attr('data-delete');
+  var data_token = $(this).attr('data-token');
+  swal({
+    title: "Apa Anda Yakin?",
+    text: "Respon den akan terhapus, klik oke untuk melanjutkan",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      
+      $.ajax({
+        url:'{{ route("struktur.deleteresponden") }}',
+        type:'DELETE',
+        data:{
+          ids:data_delete,
+          _token:data_token
+        },
+        success:function(data){
+          swal(
+            {
+              title: "Berhasil",
+              text: "IKK dan Target berhasil dihapus",
+              icon: "success",
+            }).then(
+              $('tbody').html(data)
+            )
+        }
+      })
+    }
+  });
+});
 @endif
 
 </script>

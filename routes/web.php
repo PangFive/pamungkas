@@ -31,7 +31,8 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::get('/struktur/kuesioner','StrukturProsesController@viewPenilaian')->name('struktur.kuesioner');
 	Route::post('/struktur/responden/add','StrukturProsesController@tambahResponden')->name('struktur.responden.add');
 	Route::get('/struktur/kuesioner/{id_mapping}/{tipe_kuesioner}','StrukturProsesController@formKuesioner')->name('struktur.kuesioner.mapping');
-	Route::post('/struktur/kuesioner/create','StrukturProsesController@createKuesioner')->name('struktur.kuesioner')->name('struktur.kuesioner.create');
+	Route::post('/struktur/kuesioner/create','StrukturProsesController@createKuesioner')->name('struktur.kuesioner.create');
+	Route::delete('/struktur/responden','StrukturProsesController@deleteResponden')->name('struktur.deleteresponden');
 	// > Penetapan Tujuan
 	Route::get('/penetapan','PenetapanController@viewPenetapan')->name('penetapan');
 	Route::get('/penetapan/penilaian','PenetapanController@penilaianPenetapan')->name('penetapan.penilaian');

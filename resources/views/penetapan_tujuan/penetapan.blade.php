@@ -416,7 +416,6 @@ $(document).on('click', '.btn-edit-sasaran', function(){
     url: "{{ url('/penetapan/editsasaran') }}/" + data_edit,
     success:function(response)
     {
-      console.log(response)
       $('input[name=edit_sasaran_id]').val(response.data.id);
       $('textarea[name=edit_sasaran]').val(response.data.sasaran);
       validator.resetForm();
@@ -447,7 +446,6 @@ $(document).on('click', '.btn-delete', function(e){
           _token:data_token
         },
         success:function(data){
-          console.log(data);
           swal(
             {
               title: "Berhasil",

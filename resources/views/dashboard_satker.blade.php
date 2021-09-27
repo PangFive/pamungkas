@@ -112,19 +112,19 @@
             <tbody>
               <tr>
                 <td> Sasaran Kegiatan belum dinilai </td>
-                <td class="col-1"> <label class="badge badge-warning">{{ $a_sasaran }}</label> </td>
+                <td width="5%"> <label class="badge badge-warning">{{ $a_sasaran }}</label> </td>
               </tr>
               <tr>
                 <td> Indikator Kinerja Kegiatan belum dinilai </td>
-                <td class="col-1"> <label class="badge badge-warning">{{ $a_ikk }}</label> </td>
+                <td width="5%"> <label class="badge badge-warning">{{ $a_ikk }}</label> </td>
               </tr>
               <tr>
                 <td> Target Kegiatan belum dinilai </td>
-                <td class="col-1"> <label class="badge badge-warning">{{ $a_target }}</label> </td>
+                <td width="5%"> <label class="badge badge-warning">{{ $a_target }}</label> </td>
               </tr>
               <tr>
                 <td> Pegawai belum mengisi kuesioner </td>
-                <td class="col-1"> <label class="badge badge-warning">{{ $res_belum }}</label> </td>
+                <td width="5%"> <label class="badge badge-warning">{{ $res_belum }}</label> </td>
               </tr>
             </tbody>
           </table>

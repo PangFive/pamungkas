@@ -115,15 +115,15 @@
               </thead>
               <tbody>
               	@foreach($satkers as $satker)
-                <tr class="col-12">
-                  <td class="col-3">
+                <tr>
+                  <td width="25%">
                   	<img src="{{ asset('pictures/' . $satker->foto) }}">
                   	<span class="ml-2">{{ $satker->nama_satker }}</span>
                   </td>
-                  <td class="col-3 text-wrap">{{ $satker->kementrian }}</td>
-                  <td class="col-3 text-wrap">{{ $satker->alamat_satker }}</td>
-                  <td class="col-2 text-wrap">{{ $satker->email_satker }}</td>
-                  <td class="col-1">
+                  <td width="25%" class="text-wrap">{{ $satker->kementrian }}</td>
+                  <td width="25%" class="text-wrap">{{ $satker->alamat_satker }}</td>
+                  <td width="16%" class="text-wrap">{{ $satker->email_satker }}</td>
+                  <td width="9%">
                   	<button type="button" class="btn btn-edit btn-icons btn-rounded btn-secondary" data-toggle="modal" data-target="#editModal" data-edit="{{ $satker->id }}">
                         <i class="mdi mdi-pencil"></i>
                     </button>

@@ -60,7 +60,7 @@
                       ?>
                       @foreach($data as $data)
                       <tr>
-                        <td class="align-top col-4">
+                        <td width="40%" class="align-top">
                           <div class="d-flex align-items-start flex-column" style="height: 100%;">
                             <div class="mb-auto">
                               <input type="hidden" name="sasaran_id[{{$data->id}}]" value="{{$data->id}}">
@@ -99,9 +99,9 @@
                         @foreach($data->ikkTarget as $data_ikk)
                         @if ($number_ikk <> 1)                        
                         <tr>     
-                          <td class="align-top col-4 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}"></td>
+                          <td width="40%" class="align-top {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}"></td>
                         @endif
-                          <td class="align-top col-4 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td width="40%" class="align-top {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
                             <input type="hidden" name="output_id[{{$data_ikk->id}}]" value="{{$data_ikk->id}}">
                             <input type="hidden" name="sasaran_id_output[{{$data_ikk->id}}]" value="{{$data->id}}">
                             <div class="d-flex align-items-start flex-column {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" style="height: 100%;">
@@ -122,7 +122,7 @@
                               </div>
                             </div>                              
                           </td>
-                          <td class="align-top col-2 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td width="20%" class="align-top {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
                             <div class="d-flex align-items-start flex-column" style="height: 100%;">
                               <div class="mb-auto">
                                 <h6 class="mb-2">Target {{ $number_ikk }}</h6>

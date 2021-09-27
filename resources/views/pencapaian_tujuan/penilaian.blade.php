@@ -168,7 +168,7 @@
                       ?>
                       @foreach($data as $data)
                       <tr>
-                        <td class="align-top col-5">
+                        <td class="align-top" width="41%">
                           <div class="d-flex align-items-start flex-column" style="height: 100%;">
                             <div class="mb-auto">
                               <input type="hidden" name="sasaran_id[{{$data->id}}]" value="{{$data->id}}">
@@ -186,9 +186,9 @@
                         @foreach($data->ikkTarget as $data_ikk)
                         @if ($number_ikk <> 1)                        
                         <tr>     
-                          <td class="align-top col-5 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}"></td>
+                          <td class="align-top {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" width="41%"></td>
                         @endif
-                          <td class="align-top col-3 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td class="align-top {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" width="25%">
                             <input type="hidden" name="output_id[{{$data_ikk->id}}]" value="{{$data_ikk->id}}">
                             <input type="hidden" name="sasaran_id_output[{{$data_ikk->id}}]" value="{{$data->id}}">
                             <div class="d-flex align-items-start flex-column style="height: 100%;">
@@ -204,7 +204,7 @@
                               </div>
                             </div>                              
                           </td>
-                          <td class="align-top col-3 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td class="align-top {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" width="25%">
                             <div class="d-flex align-items-start flex-column" style="height: 100%;">
                               <div class="mb-auto">
                                 <h6 class="mb-2">Target {{ $number_ikk }}</h6>
@@ -218,7 +218,7 @@
                               </div>
                             </div>
                           </td>
-                          <td class="align-top col-1 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td class="align-top col-1 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" width="9%">
                             <div class="d-flex justify-content-between">
                               <button class="btn-output btn-custom mr-3" data-toggle="modal" data-target="#tambahOutput" data-sasaran="{{ $data_ikk->id }}">
                                   + Realisasi

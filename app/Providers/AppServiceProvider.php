@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
         date_default_timezone_set('Asia/Jakarta');
+
+        if(env('FORCE_HTTPS',false)) { 
+            URL::forceScheme('https');
+        }
     }
 }
